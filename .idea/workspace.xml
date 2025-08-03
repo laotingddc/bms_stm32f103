@@ -35,14 +35,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab14840f-7b18-4239-b3aa-a8985821dfb0" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ab14840f-7b18-4239-b3aa-a8985821dfb0" name="更改" comment="feat:基于cmake的串口重定向(支持浮点)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/103_BMS.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/103_BMS.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/stm32f1xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32f1xx_hal_conf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/usart.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Administrator/Desktop/0.1_dc/103_BMS/Core/Src/main.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Administrator/Desktop/0.1_dc/103_BMS/Core/Src/usart.c" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -117,8 +121,33 @@
       <updated>1754197238192</updated>
       <workItem from="1754197240495" duration="12000" />
       <workItem from="1754197894376" duration="6000" />
-      <workItem from="1754197942583" duration="2361000" />
+      <workItem from="1754197942583" duration="5335000" />
     </task>
+    <task id="LOCAL-00001" summary="feat:基于cmake的串口重定向(支持浮点)">
+      <option name="closed" value="true" />
+      <created>1754200521466</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754200521466</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat:基于cmake的串口重定向(支持浮点)">
+      <option name="closed" value="true" />
+      <created>1754200552816</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754200552816</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat:基于cmake的串口重定向(支持浮点)">
+      <option name="closed" value="true" />
+      <created>1754200562089</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754200562089</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,5 +157,9 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat:基于cmake的串口重定向(支持浮点)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:基于cmake的串口重定向(支持浮点)" />
   </component>
 </project>

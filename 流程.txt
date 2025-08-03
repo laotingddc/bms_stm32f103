@@ -1,0 +1,4 @@
+https://www.ti.com.cn/cn/lit/an/zhcacn4/zhcacn4.pdf?ts=1754216566531&ref_url=https%253A%252F%252Fwww.bing.com%252F
+https://e2echina.ti.com/support/power-management/f/power-management-forum/77180/bq76930
+
+上电 TS1 拉高延时100ms 拉低

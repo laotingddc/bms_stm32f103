@@ -18,9 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-#include <stdio.h>
-
+#include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -91,11 +89,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  float a = 3.1415926;
-  printf("hello world%.2f\n",a);
-  printf("hello world%.1f\n",a);
-  printf("hello world%.3f\n",a);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
