@@ -18,6 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
+#include <stdio.h>
+
 #include "usart.h"
 #include "gpio.h"
 
@@ -89,13 +92,19 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  float a = 3.1415926;
+  printf("hello world%.2f\n",a);
+  printf("hello world%.1f\n",a);
+  printf("hello world%.3f\n",a);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+    HAL_Delay(200);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
