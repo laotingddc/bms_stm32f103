@@ -35,7 +35,15 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 # Enable CMake support for ASM and C languages
 enable_language(C ASM)
 # Create an executable object type
-add_executable(${CMAKE_PROJECT_NAME})
+add_executable(${CMAKE_PROJECT_NAME}
+        mydrv/drv_bq769x0.c
+        mydrv/drv_bq769x0.h
+        mydrv/bq769x0_reg.h
+        mydrv/bq_drv_port.c
+        mydrv/bq_drv_port.h
+        mydrv/soft_iic.c
+        mydrv/soft_iic.h
+)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
@@ -53,6 +61,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/mydrv
     # Add user defined include paths
 )
 
