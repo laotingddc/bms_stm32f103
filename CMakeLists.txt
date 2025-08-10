@@ -39,10 +39,10 @@ add_executable(${CMAKE_PROJECT_NAME}
         mydrv/drv_bq769x0.c
         mydrv/drv_bq769x0.h
         mydrv/bq769x0_reg.h
-        mydrv/bq_drv_port.c
-        mydrv/bq_drv_port.h
-        mydrv/soft_iic.c
-        mydrv/soft_iic.h
+        MCU_port/iic_port.c
+        MCU_port/iic_port.h
+        MCU_platform/iic_driver/bsp_iic.c
+        MCU_platform/iic_driver/bsp_iic.h
 )
 
 # Add STM32CubeMX generated sources
@@ -62,6 +62,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/mydrv
+        ${CMAKE_CURRENT_SOURCE_DIR}/MCU_port
+        ${CMAKE_CURRENT_SOURCE_DIR}/MCU_platform/iic_driver
     # Add user defined include paths
 )
 
