@@ -229,76 +229,6 @@ iic_status_t iic_driver_init(i2c_driver_t *i2c_driver_inst)
     return IIC_OK;
 }
 
-iic_status_t iic_driver_inst(i2c_driver_t           *i2c_driver_inst,
-                             i2c_driver_interface_t *pf_i2c_interface_inst,
-                             delay_interface_t      *pf_delay_interface_inst)
-{
-    if(NULL == i2c_driver_inst || NULL == pf_i2c_interface_inst ||
-       NULL == pf_delay_interface_inst)
-    {
-        return IIC_ERROR;
-    }
-    i2c_driver_inst->pf_i2c_interface_inst   = pf_i2c_interface_inst;
-    i2c_driver_inst->pf_delay_interface_inst = pf_delay_interface_inst;
-    if(IIC_OK != iic_driver_init(i2c_driver_inst))
-    {
-        return IIC_ERROR;
-    }
-    i2c_driver_inst->pf_i2c_interface_inst->pf_set_sda(1);
-    i2c_driver_inst->pf_i2c_interface_inst->pf_set_scl(1);
-    return IIC_OK;
-}
-
-
-static uint8_t CRC8(uint8_t *ptr, uint8_t len)
-{
-    uint8_t i, crc=0;
-
-    while (len-- != 0)
-    {
-        for (i = 0x80; i != 0; i /= 2)
-        {
-            if ((crc & 0x80) != 0)
-            {
-                crc *= 2;
-                crc ^= 0x07;
-            }
-            else
-            {
-                crc *= 2;
-            }
-            if ((*ptr & i) != 0)
-            {
-                crc ^= 0x07;
-            }
-        }
-        ptr++;
-    }
-    return(crc);
-}
-void iic_write_one_byte_CRC1(i2c_driver_t *i2c_driver ,uint16_t WriteAddr,uint16_t DataToWrite)
-{
-
-
-    unsigned char DataBuffer[4];
-
-    DataBuffer[0] = 0X08 << 1;
-    DataBuffer[1] = WriteAddr;
-    DataBuffer[2] = DataToWrite;
-    DataBuffer[3] = CRC8(DataBuffer, 3);
-
-    IIC_Start(i2c_driver);
-    IIC_Send_Byte(i2c_driver, DataBuffer[0]);   //发送器件地址0XA0,写数据
-    IIC_Wait_Ack(i2c_driver);
-    IIC_Send_Byte(i2c_driver, DataBuffer[1]);   //发送器件地址0XA0,写数据
-    IIC_Wait_Ack(i2c_driver);
-    IIC_Send_Byte(i2c_driver, DataBuffer[2]);   //发送器件地址0XA0,写数据
-    IIC_Wait_Ack(i2c_driver);
-    IIC_Send_Byte(i2c_driver, DataBuffer[3]);   //发送器件地址0XA0,写数据
-    IIC_Wait_Ack(i2c_driver);
-    IIC_Stop(i2c_driver);
-    i2c_driver->pf_delay_interface_inst->pf_delay_us(1000);
-}
 uint8_t iic_read_bytes(i2c_driver_t *i2c_driver, uint8_t dev_addr, uint16_t ReadAddr, uint8_t *buf, uint8_t len)
 {
     if (len == 0) return 1; // 长度为 0 无意义
@@ -324,4 +254,71 @@ uint8_t iic_read_bytes(i2c_driver_t *i2c_driver, uint8_t dev_addr, uint16_t Read
 
     IIC_Stop(i2c_driver);
     return 0; // 成功
+}
+
+/**
+ * @brief  向I2C设备写入数据。
+ * @param  i2c_driver: I2C驱动实例。
+ * @param  dev_addr: I2C设备地址，高7位。
+ * @param  WriteAddr: 写入的寄存器地址，高8位或16位。
+ * @param  buf: 待写入数据的缓冲区指针。
+ * @param  len: 待写入数据的长度。
+ * @retval 0: 成功, 1: 失败 (例如, 未收到ACK)。
+ */
+uint8_t iic_write_bytes(i2c_driver_t *i2c_driver, uint8_t dev_addr, uint8_t WriteAddr, uint8_t *buf, uint8_t len)
+{
+    // 检查参数有效性
+    if (!i2c_driver || !buf || len == 0)
+    {
+        return 1; // 失败
+    }
+
+    IIC_Start(i2c_driver); // 发送起始信号
+
+    // 发送设备地址，并判断是否收到ACK
+    // I2C设备地址为7位，需要左移1位，最后一位为0表示写入
+    IIC_Send_Byte(i2c_driver, dev_addr<<1);// 0XA0 的写法不严谨，通常使用7位地址左移
+    IIC_Wait_Ack(i2c_driver);
+    // 发送寄存器地址
+    // 这里的实现假设寄存器地址是16位的，因此需要发送两次
+    IIC_Send_Byte(i2c_driver, WriteAddr); // 发送高8位地址
+    IIC_Wait_Ack(i2c_driver);
+    // 循环发送数据缓冲区中的所有字节
+    for (uint8_t i = 0; i < len; i++)
+    {
+        IIC_Send_Byte(i2c_driver, buf[i]);
+        if (IIC_Wait_Ack(i2c_driver) == 1)
+        {
+            IIC_Stop(i2c_driver);
+            return 1; // 写入数据失败
+        }
+    }
+
+    IIC_Stop(i2c_driver); // 发送停止信号
+    
+    // 写入操作后，一些设备可能需要一段时间来处理数据。
+    // 这里加入一个延时是很好的实践。
+    i2c_driver->pf_delay_interface_inst->pf_delay_us(1000);
+
+    return 0; // 成功
+}
+
+iic_status_t iic_driver_inst(i2c_driver_t           *i2c_driver_inst,
+                             i2c_driver_interface_t *pf_i2c_interface_inst,
+                             delay_interface_t      *pf_delay_interface_inst)
+{
+    if(NULL == i2c_driver_inst || NULL == pf_i2c_interface_inst ||
+       NULL == pf_delay_interface_inst)
+    {
+        return IIC_ERROR;
+    }
+    i2c_driver_inst->pf_i2c_interface_inst   = pf_i2c_interface_inst;
+    i2c_driver_inst->pf_delay_interface_inst = pf_delay_interface_inst;
+    if(IIC_OK != iic_driver_init(i2c_driver_inst))
+    {
+        return IIC_ERROR;
+    }
+    i2c_driver_inst->pf_i2c_interface_inst->pf_set_sda(1);
+    i2c_driver_inst->pf_i2c_interface_inst->pf_set_scl(1);
+    return IIC_OK;
 }

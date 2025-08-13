@@ -91,6 +91,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
   BQ769X0_Initialize();
   /* USER CODE END 2 */
 

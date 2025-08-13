@@ -37,17 +37,22 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab14840f-7b18-4239-b3aa-a8985821dfb0" name="更改" comment="feat:基于cmake的串口重定向(支持浮点)">
+    <list default="true" id="ab14840f-7b18-4239-b3aa-a8985821dfb0" name="更改" comment="feat:移植了软件iic驱动 并测试看可以读取到bq76930的增益数据">
+      <change afterPath="$PROJECT_DIR$/mydrv/bq769x0_config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydrv/crc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mydrv/crc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCU_platform/iic_driver/bsp_iic.c" beforeDir="false" afterPath="$PROJECT_DIR$/MCU_platform/iic_driver/bsp_iic.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCU_platform/iic_driver/bsp_iic.h" beforeDir="false" afterPath="$PROJECT_DIR$/MCU_platform/iic_driver/bsp_iic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCU_port/iic_port.c" beforeDir="false" afterPath="$PROJECT_DIR$/MCU_port/iic_port.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCU_port/iic_port.h" beforeDir="false" afterPath="$PROJECT_DIR$/MCU_port/iic_port.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydrv/bq769x0_reg.h" beforeDir="false" afterPath="$PROJECT_DIR$/mydrv/bq769x0_reg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydrv/bq_drv_port.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydrv/bq_drv_port.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mydrv/drv_bq769x0.c" beforeDir="false" afterPath="$PROJECT_DIR$/mydrv/drv_bq769x0.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mydrv/drv_bq769x0.h" beforeDir="false" afterPath="$PROJECT_DIR$/mydrv/drv_bq769x0.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydrv/soft_iic.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydrv/soft_iic.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +67,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Administrator/Desktop/0.1_dc/103_BMS/Core/Src/main.c" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Administrator/Desktop/0.1_dc/103_BMS/Core/Src/usart.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/MCU_platform/iic_driver/bsp_iic.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/MCU_platform/iic_driver/bsp_iic.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/MCU_platform/iic_driver/bsp_iic.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/MCU_platform/iic_driver/bsp_iic.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/MCU_platform/iic_driver/bsp_iic.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/code/bms/mydrv/drv_bq769x0.c" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -79,30 +101,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;OpenOCD 下载并运行.103_BMS.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Desktop/0.1_dc/103_BMS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.cidr.cpp.execution.gdbserver.debugtargets.NamedDebugTargetConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "OpenOCD 下载并运行.103_BMS.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "Develop",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/0.1_dc/103_BMS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.cidr.cpp.execution.gdbserver.debugtargets.NamedDebugTargetConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="OpenOCD 下载并运行.103_BMS">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -138,6 +160,8 @@
       <workItem from="1754197894376" duration="6000" />
       <workItem from="1754197942583" duration="5335000" />
       <workItem from="1754322368770" duration="8776000" />
+      <workItem from="1754931851820" duration="9426000" />
+      <workItem from="1755097248221" duration="3776000" />
     </task>
     <task id="LOCAL-00001" summary="feat:基于cmake的串口重定向(支持浮点)">
       <option name="closed" value="true" />
@@ -173,6 +197,17 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat:基于cmake的串口重定向(支持浮点)" />

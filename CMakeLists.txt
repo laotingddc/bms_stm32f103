@@ -43,6 +43,9 @@ add_executable(${CMAKE_PROJECT_NAME}
         MCU_port/iic_port.h
         MCU_platform/iic_driver/bsp_iic.c
         MCU_platform/iic_driver/bsp_iic.h
+        mydrv/crc.c
+        mydrv/crc.h
+        mydrv/bq769x0_config.h
 )
 
 # Add STM32CubeMX generated sources

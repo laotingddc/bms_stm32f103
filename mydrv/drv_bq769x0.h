@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include "bq769x0_reg.h"
+#include "bq769x0_config.h"
 #include "bsp_iic.h"
 void BQ769X0_Initialize(void);
 #endif //DRV_BQ769X2_H
